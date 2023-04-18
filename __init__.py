@@ -1,2 +1,4 @@
-from bybitHTTPX.client import *
-from bybitHTTPX.signature import *
+VERSION = '0.0.5'
+
+from .client import *
+from .signature import *
