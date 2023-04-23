@@ -90,8 +90,8 @@ class historicDB:
         )
 
         if pathToSave != None:
-            with open(pathToSave, 'w') as f:
-                f.write(res.content.decode('utf-8'))
+            with open(pathToSave, 'wb') as f:
+                f.write(res.content)
                 f.close()
         else:
             return res.content
