@@ -30,16 +30,27 @@ class BybitClient:
             'Content-Type': 'application/json'
         }
 
-    def getkLines(self, category: str, symbol: str, interval: str, fromTimestamp: str, limit: Optional[int] = 1000) -> httpx.Response:
+    def getkLines(self, category: str, symbol: str, interval: str, fromTimestamp: int, limit: Optional[int] = 1000, startTimestamp: Optional[int] = None, endTimestamp: Optional[int] = None) -> httpx.Response:
         endpoint = '/v5/market/kline'
+
+        if (startTimestamp != None) and (endTimestamp != None):
+            return self.getRequest(endpoint, params = {
+                'category': category,
+                'symbol': symbol,
+                'interval': interval,
+                'start': startTimestamp,
+                'end': endTimestamp,
+                'limit': limit
+            })
+
         return self.getRequest(endpoint, params = {
             'category': category,
             'symbol': symbol,
             'interval': interval,
-            'from_time': fromTimestamp,
+            'fromTimestamp': fromTimestamp,
             'limit': limit
         })
-
+    
     def getRequest(self, endpoint: str, params: dict) -> httpx.Response:
         '''
         POST METHOD REQUEST
