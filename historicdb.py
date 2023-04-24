@@ -19,7 +19,7 @@ class historicDB:
     def __init__(self) -> None:
         pass
 
-    def getEndpointItems(self) -> BeautifulSoup:
+    def getEndpoint(self) -> BeautifulSoup:
         res = httpx.get(url = self.ENDPOINT)
         return BeautifulSoup(res.content, 'html.parser')
 
@@ -34,7 +34,7 @@ class historicDB:
 
         return arr
 
-    def getPremiumIndexItems(self) -> BeautifulSoup:
+    def getPremiumIndexItems(self) -> list:
         res = httpx.get(url = self.PREMIUM_INDEX)
         soup = BeautifulSoup(res.content, 'html.parser')
 
@@ -45,7 +45,7 @@ class historicDB:
             
         return arr
 
-    def getSpotIndexItems(self) -> BeautifulSoup:
+    def getSpotIndexItems(self) -> list:
         res = httpx.get(url = self.SPOT_INDEX)
         soup = BeautifulSoup(res.content, 'html.parser')
 
@@ -56,7 +56,7 @@ class historicDB:
             
         return arr
 
-    def getTrading(self) -> BeautifulSoup:
+    def getTradingItems(self) -> list:
         res = httpx.get(url = self.TRADING)
         soup = BeautifulSoup(res.content, 'html.parser')
 
@@ -67,7 +67,7 @@ class historicDB:
             
         return arr
 
-    def getKeyItems(self, URL: str) -> BeautifulSoup:
+    def getKeyItems(self, URL: str) -> list:
         res = httpx.get(url = URL)
         soup = BeautifulSoup(res.content, 'html.parser')
 
